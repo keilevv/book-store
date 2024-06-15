@@ -6,8 +6,8 @@ function BookListItem({ book, index, handleClick }) {
 
   return (
     <div
-      id={`book-${index}`}
-      className="relative flex flex-col justify-center items-center max-h-[240px] transform transition-all duration-300 hover:scale-105 hover:shadow-glow"
+      id={`book-${book.ISBN}`}
+      className="relative flex flex-col justify-center items-center max-h-[240px] max-w-[140px] transform transition-all duration-300 hover:scale-105 hover:shadow-glow"
       onClick={() => {
         dispatch(setReadingListAction(readingList.concat(book)));
         handleClick(book, index);
