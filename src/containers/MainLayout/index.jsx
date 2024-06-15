@@ -44,7 +44,11 @@ function MainLayout() {
             loading={loading}
             addToReadingList={addToReadingList}
           />
-          <ReadingList readingList={readingList} />
+          <ReadingList
+            readingList={readingList}
+            setReadingList={setReadingList}
+            setAvailableBooks={setAvailableBooks}
+          />
         </div>
       </div>
     </div>
