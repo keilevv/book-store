@@ -1,5 +1,7 @@
 import BackgroundImage from "../../assets/backdrop.png";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setReadingList as setReadingListAction } from "../../redux/reducers/appSlice";
 /* Components */
 import BookList from "../../components/BookList";
 import Navbar from "../../components/Navbar";
@@ -11,20 +13,25 @@ function MainLayout() {
   const { books, getBooks, loading } = useBooks();
   const [availableBooks, setAvailableBooks] = useState([]);
   const [readingList, setReadingList] = useState([]);
+  const storedReadingList = useSelector((state) => state.app.readingList);
 
   useEffect(() => {
     getBooks();
   }, []);
 
   useEffect(() => {
-    setAvailableBooks(books);
-  }, [books]);
+    const available = books.filter((b) => !storedReadingList.some((s) => s.ISBN === b.ISBN));
+
+    setAvailableBooks(available);
+  }, [books, storedReadingList]);
+
+  useEffect(() => {
+  }, [readingList]);
 
   const addToReadingList = (book) => {
     setAvailableBooks((prevBooks) =>
       prevBooks.filter((b) => b.ISBN !== book.ISBN)
     );
-    setReadingList((prevList) => [...prevList, book]);
   };
 
   return (
@@ -45,7 +52,7 @@ function MainLayout() {
             addToReadingList={addToReadingList}
           />
           <ReadingList
-            readingList={readingList}
+            readingList={storedReadingList}
             setReadingList={setReadingList}
             setAvailableBooks={setAvailableBooks}
           />

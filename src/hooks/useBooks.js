@@ -16,7 +16,6 @@ function useBooks() {
         const bookArray = responseArray.map((book) => {
           return book.book;
         });
-        dispatch(setAvailableBooks(bookArray));
         setBooks(bookArray);
         setLoading(false);
       })

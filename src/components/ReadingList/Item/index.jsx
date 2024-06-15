@@ -1,5 +1,7 @@
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setReadingList as setReadingListAction } from "../../../redux/reducers/appSlice";
 function ReadingListItem({
   book,
   index,
@@ -7,6 +9,8 @@ function ReadingListItem({
   setReadingList,
   setAvailableBooks,
 }) {
+  const storedReadingList = useSelector((state) => state.app.readingList);
+  const dispatch = useDispatch();
   useEffect(() => {
     const previousItem = document.getElementById(
       `reading-book-content-${readingList.length - 2}`
@@ -53,6 +57,11 @@ function ReadingListItem({
           <XMarkIcon
             className="absolute top-0 right-0 p-2 text-white cursor-pointer max-h-10"
             onClick={() => {
+              dispatch(
+                setReadingListAction(
+                  storedReadingList.filter((storedBook) => storedBook !== book)
+                )
+              );
               setReadingList((prev) => prev.filter((_, i) => i !== index));
               setAvailableBooks((prev) => [...prev, book]);
             }}
