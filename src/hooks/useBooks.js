@@ -9,7 +9,11 @@ function useBooks() {
     axios
       .get("https://jelou-prueba-tecnica1-frontend.rsbmk.workers.dev")
       .then((response) => {
-        setBooks(response.data.default.library);
+        const responseArray = response.data.default.library;
+        const bookArray = responseArray.map((book) => {
+          return book.book;
+        });
+        setBooks(bookArray);
         setLoading(false);
       })
       .catch(() => {

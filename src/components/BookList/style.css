@@ -1,0 +1,9 @@
+.book-item {
+  position: relative;
+  transition: transform 0.5s ease-in-out;
+}
+
+.move-to-reading-list {
+  transform: translateX(100%); 
+  opacity: 1;
+}

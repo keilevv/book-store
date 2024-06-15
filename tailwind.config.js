@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      boxShadow: {
+        glow: "0 4px 15px rgba(0, 255, 255, 0.5)", // Adjust the values as needed for your glow effect
+      },
       colors: {
         transparent: "transparent",
         current: "currentColor",

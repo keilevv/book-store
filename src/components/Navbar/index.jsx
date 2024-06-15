@@ -4,12 +4,9 @@ import {
   DisclosureButton,
   DisclosurePanel,
 } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
-const navigation = [
-  { name: "Home", href: "#", current: true },
-  { name: "Store", href: "#", current: false },
-];
+const navigation = [];
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");

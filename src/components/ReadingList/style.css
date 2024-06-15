@@ -1,0 +1,34 @@
+.reading-list {
+    position: relative;
+    height: calc(100% - 2rem); /* Adjust based on your container */
+    padding: 1rem;
+    overflow: hidden;
+  }
+  
+  .reading-list-item {
+    position: absolute;
+    width: 100%;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.75); /* Adjust background if needed */
+  }
+  
+  .reading-list-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+  }
+  
+  .reading-list-item button {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  .reading-list-item button:hover {
+    background: rgba(0, 0, 0, 0.75);
+  }
+  
