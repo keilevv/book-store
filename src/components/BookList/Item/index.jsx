@@ -1,10 +1,27 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setReadingList as setReadingListAction } from "../../../redux/reducers/appSlice";
 import { useEffect } from "react";
-function BookListItem({ book, index, handleClick, loading }) {
+function BookListItem({ book, index, loading, addToReadingList }) {
   const readingList = useSelector((state) => state.app.readingList);
   const dispatch = useDispatch();
 
+  const handleClick = (book, index) => {
+    const element = document.getElementById(`book-${book.ISBN}`);
+    if (element) {
+      setTimeout(() => {
+        element.classList.add("opacity-0");
+        addToReadingList(book);
+      }, 100);
+    }
+
+    const readingListElement = document.getElementById("reading-list-scroll");
+    if (readingListElement) {
+      readingListElement.scrollTo({
+        top: readingListElement.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  };
   useEffect(() => {
     const bookElement = document.getElementById(`book-${book.ISBN}`);
     if (bookElement && !loading) {

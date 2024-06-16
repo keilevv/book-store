@@ -6,7 +6,7 @@ const appSlice = createSlice({
   initialState: {
     readingList: [],
     availableBooks: [],
-    tab: "all",
+    tab: 0,
   },
   reducers: {
     setReadingList: (state, action) => {

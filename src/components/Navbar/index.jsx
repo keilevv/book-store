@@ -1,11 +1,9 @@
-import { Fragment } from "react";
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
 } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-
+import Logo from "../../assets/logo-2.png";
 const navigation = [];
 
 function classNames(...classes) {
@@ -21,11 +19,7 @@ function Navbar() {
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden"></div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="main-logo"
-                  />
+                  <img className="h-16 w-auto object-contain" src={Logo} alt="main-logo" />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">

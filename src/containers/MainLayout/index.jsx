@@ -44,7 +44,7 @@ function MainLayout() {
   };
 
   return (
-    <div className="min-h-screen min-w-full">
+    <div className="min-h-screen min-w-full pb-10">
       <Navbar />
       <LazyLoad>
         <img
@@ -57,10 +57,12 @@ function MainLayout() {
         <h1 className="text-3xl font-bold text-center p-10 mt-100">
           My cool library
         </h1>
-        <div className="container flex gap-8 lg:flex-row flex-col-reverse justify-center px-4 mx-auto overflow-x-hidden">
+        <div className="container flex gap-10 lg:flex-row flex-col-reverse justify-center px-4 mx-auto overflow-x-hidden">
           <BookList
+            setAvailableBooks={setAvailableBooks}
+            allBooks={books}
             readingList={storedReadingList}
-            books={availableBooks}
+            availableBooks={availableBooks}
             loading={loading}
             addToReadingList={addToReadingList}
           />
