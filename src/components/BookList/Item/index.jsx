@@ -1,13 +1,23 @@
 import { useSelector, useDispatch } from "react-redux";
 import { setReadingList as setReadingListAction } from "../../../redux/reducers/appSlice";
-function BookListItem({ book, index, handleClick }) {
+import { useEffect } from "react";
+function BookListItem({ book, index, handleClick, loading }) {
   const readingList = useSelector((state) => state.app.readingList);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    const bookElement = document.getElementById(`book-${book.ISBN}`);
+    if (bookElement && !loading) {
+      setTimeout(() => {
+        bookElement.classList.remove("opacity-0");
+      }, 300);
+    }
+  }, [book, loading]);
 
   return (
     <div
       id={`book-${book.ISBN}`}
-      className="relative flex flex-col justify-center items-center max-h-[240px] max-w-[140px] transform transition-all duration-300 hover:scale-105 hover:shadow-glow"
+      className="relative opacity-0 flex flex-col justify-center items-center max-h-[240px] max-w-[140px] transform transition-all duration-300 hover:scale-105 hover:shadow-glow"
       onClick={() => {
         dispatch(setReadingListAction(readingList.concat(book)));
         handleClick(book, index);

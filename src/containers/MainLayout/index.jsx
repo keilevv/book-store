@@ -1,7 +1,7 @@
 import BackgroundImage from "../../assets/backdrop.png";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setReadingList as setReadingListAction } from "../../redux/reducers/appSlice";
+import LazyLoad from "react-lazy-load";
+import { useSelector } from "react-redux";
 /* Components */
 import BookList from "../../components/BookList";
 import Navbar from "../../components/Navbar";
@@ -15,18 +15,27 @@ function MainLayout() {
   const [readingList, setReadingList] = useState([]);
   const storedReadingList = useSelector((state) => state.app.readingList);
 
+  const backgroundImage = document.getElementById("background-image");
+  if (backgroundImage) {
+    setTimeout(() => {
+      backgroundImage.classList.remove("opacity-0");
+      backgroundImage.classList.add("opacity-70");
+    }, 100);
+  }
+
   useEffect(() => {
     getBooks();
   }, []);
 
   useEffect(() => {
-    const available = books.filter((b) => !storedReadingList.some((s) => s.ISBN === b.ISBN));
+    const available = books.filter(
+      (b) => !storedReadingList.some((s) => s.ISBN === b.ISBN)
+    );
 
     setAvailableBooks(available);
   }, [books, storedReadingList]);
 
-  useEffect(() => {
-  }, [readingList]);
+  useEffect(() => {}, [readingList]);
 
   const addToReadingList = (book) => {
     setAvailableBooks((prevBooks) =>
@@ -37,10 +46,13 @@ function MainLayout() {
   return (
     <div className="min-h-screen min-w-full">
       <Navbar />
-      <img
-        src={BackgroundImage}
-        className="w-full object-cover absolute opacity-70 -z-10"
-      />
+      <LazyLoad>
+        <img
+          id="background-image"
+          src={BackgroundImage}
+          className="w-full object-cover absolute opacity-0 -z-10 transition-opacity duration-300"
+        />
+      </LazyLoad>
       <div className="bg-transparent backdrop-filter backdrop-blur-lg">
         <h1 className="text-3xl font-bold text-center p-10 mt-100">
           My cool library

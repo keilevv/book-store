@@ -6,7 +6,7 @@ import "./style.css";
 function ReadingList({ readingList, setReadingList, setAvailableBooks }) {
   const dispatch = useDispatch();
   return (
-    <div className="min-w-[300px] py-10 px-10 border-aquamarine-500 border-2 rounded-s">
+    <div className="min-w-[300px] min-h-[600px] py-10 px-10 border-aquamarine-500 border-2 rounded-s">
       <h1 className="text-2xl font-light text-center">Reading List</h1>
 
       {readingList.length ? (

@@ -11,6 +11,8 @@ function ReadingListItem({
 }) {
   const storedReadingList = useSelector((state) => state.app.readingList);
   const dispatch = useDispatch();
+
+  
   useEffect(() => {
     const previousItem = document.getElementById(
       `reading-book-content-${readingList.length - 2}`
@@ -29,8 +31,10 @@ function ReadingListItem({
     }
 
     if (itemContainer) {
-      itemContainer.classList.remove("opacity-0");
-      itemContainer.classList.add("opacity-100");
+      setTimeout(() => {
+        itemContainer.classList.remove("opacity-0");
+        itemContainer.classList.add("opacity-100");
+      }, 100);
     }
   }, [readingList]);
 
@@ -44,7 +48,7 @@ function ReadingListItem({
         zIndex: readingList.length + index,
       }}
     >
-      <div className="relative flex justify-between items-center p-2 rounded shadow-lg">
+      <div className="relative flex justify-between items-center  rounded shadow-lg">
         <img
           src={book.cover}
           alt={`Cover of ${book.title}`}
@@ -52,7 +56,7 @@ function ReadingListItem({
         />
         <div
           id={`reading-book-content-${index}`}
-          className="absolute inset-0 flex flex-col  items-center text-center text-white bg-black bg-opacity-80 opacity-0 hover:opacity-100 transition-opacity duration-300"
+          className="absolute  p-2 inset-0 flex flex-col  items-center text-center text-white bg-black bg-opacity-80 opacity-0 hover:opacity-100 transition-opacity duration-300"
         >
           <XMarkIcon
             className="absolute top-0 right-0 p-2 text-white cursor-pointer max-h-10"
