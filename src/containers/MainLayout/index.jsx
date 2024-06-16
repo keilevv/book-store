@@ -54,8 +54,8 @@ function MainLayout() {
         />
       </LazyLoad>
       <div className="bg-transparent backdrop-filter backdrop-blur-lg min-h-screen">
-        <h1 className="text-3xl font-bold text-center p-10 mt-100">
-          My cool library
+        <h1 className="text-4xl font-bold text-center p-10 mt-10">
+          Mi lista de libros
         </h1>
         <div className="container flex gap-10 lg:flex-row flex-col-reverse justify-center px-4 mx-auto overflow-x-hidden">
           <BookList

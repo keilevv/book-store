@@ -11,14 +11,14 @@ function ReadingList({ readingList, setReadingList, setAvailableBooks }) {
   const dispatch = useDispatch();
   return (
     <div className="min-w-[300px] min-h-[300px] lg:min-h-[900px] py-10 px-10  border-aquamarine-500 border-2 rounded-s">
-      <h1 className="text-2xl font-light text-center">Reading List</h1>
+      <h1 className="text-2xl font-light text-center">Lista de lectura</h1>
       {readingList.length ? (
         <div
 
           onClick={() => dispatch(setReadingListAction([]))}
           className="mx-auto my-10 cursor-pointer flex gap-2 justify-center p-2 rounded-sm hover:shadow-glow hover:bg-aquamarine-500  lg:bg-transparent bg-aquamarine-500 hover:outline  outline-aquamarine-200 transition-all"
         >
-          <p className="text-center align-middle text-xl mt-auto">Clear</p>
+          <p className="text-center align-middle text-xl mt-auto">Limpiar</p>
           <TrashIcon className=" max-w-8 my-auto" color="#ADACA7" />
         </div>
       ) : (
@@ -27,7 +27,7 @@ function ReadingList({ readingList, setReadingList, setAvailableBooks }) {
             className=" max-w-8 mx-auto mt-10"
             style={{ color: "aquamarine0" }}
           />
-          <p className="mt-10 text-center">Add books by clicking on them</p>
+          <p className="mt-10 text-center">Agregue títulos haciendo click en ellos</p>
         </div>
       )}
       {readingList.length ? (

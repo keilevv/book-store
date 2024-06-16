@@ -2,6 +2,7 @@ import { Tab, TabGroup, TabList } from "@headlessui/react";
 import { useEffect, useState } from "react";
 import { setTab } from "../../redux/reducers/appSlice";
 import { useDispatch, useSelector } from "react-redux";
+import SearchInput from "../SearchInput";
 
 function BookListTabs({
   availableBooks,
@@ -14,7 +15,7 @@ function BookListTabs({
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const genres = ["All"].concat([
+    const genres = ["Todos"].concat([
       ...new Set(allBooks.map((book) => book.genre)),
     ]);
     setCategories(genres.map((genre) => ({ name: genre })));
@@ -40,7 +41,7 @@ function BookListTabs({
   }
 
   return (
-    <div className="flex  justify-center pt-10 pb-10 ">
+    <div className="flex-col justify-center pt-10 pb-10 ">
       <TabGroup
         defaultIndex={storedSelectedTab}
         onChange={(value) => {
@@ -58,6 +59,12 @@ function BookListTabs({
           ))}
         </TabList>
       </TabGroup>
+      <SearchInput
+        readingList={readingList}
+        allBooks={allBooks}
+        availableBooks={availableBooks}
+        setAvailableBooks={setAvailableBooks}
+      />
     </div>
   );
 }

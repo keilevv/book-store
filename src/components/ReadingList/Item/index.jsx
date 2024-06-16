@@ -12,7 +12,6 @@ function ReadingListItem({
   const storedReadingList = useSelector((state) => state.app.readingList);
   const dispatch = useDispatch();
 
-  
   useEffect(() => {
     const previousItem = document.getElementById(
       `reading-book-content-${readingList.length - 2}`
@@ -47,6 +46,7 @@ function ReadingListItem({
         top: `${index * 60}px`,
         zIndex: readingList.length + index,
       }}
+      onClick={(e) => e.stopPropagation()}
     >
       <div className="relative flex justify-between items-center  rounded shadow-lg">
         <img
