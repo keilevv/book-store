@@ -1,6 +1,7 @@
+import { useEffect } from "react";
 import BookListItem from "./Item";
 import "./style.css";
-function BookList({ books, addToReadingList, loading }) {
+function BookList({ books, addToReadingList, loading, readingList }) {
   const handleClick = (book, index) => {
     const element = document.getElementById(`book-${book.ISBN}`);
     if (element) {
@@ -14,9 +15,19 @@ function BookList({ books, addToReadingList, loading }) {
       }, 100);
     }
   };
+  useEffect(() => {
+    const gridElement = document.getElementById("grid-container");
+    if (gridElement) {
+      if (readingList.length < 8) {
+      }
+    }
+  }, [readingList]);
 
   return (
-    <div className="flex flex-wrap gap-4 justif-repeat">
+    <div
+      id={"grid-container"}
+      className="grid grid-cols-[120px,120px] md:grid-cols-[140px,140px,140px] lg:grid-cols-[140px,140px,140px,140px] max-h-[600px] lg:max-h-[900px] lg:mx-0 mx-auto overflow-y-scroll"
+    >
       {books.map((book, index) => (
         <BookListItem
           loading={loading}

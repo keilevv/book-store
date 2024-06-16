@@ -7,6 +7,7 @@ export default {
         glow: "0 4px 15px rgba(0, 255, 255, 0.5)", // Adjust the values as needed for your glow effect
       },
       colors: {
+        turquese: "rgba(0, 255, 255, 1)",
         transparent: "transparent",
         current: "currentColor",
         white: "#ffffff",

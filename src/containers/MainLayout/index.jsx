@@ -53,12 +53,13 @@ function MainLayout() {
           className="w-full object-cover absolute opacity-0 -z-10 transition-opacity duration-300"
         />
       </LazyLoad>
-      <div className="bg-transparent backdrop-filter backdrop-blur-lg">
+      <div className="bg-transparent backdrop-filter backdrop-blur-lg min-h-screen">
         <h1 className="text-3xl font-bold text-center p-10 mt-100">
           My cool library
         </h1>
-        <div className="container  flex gap-8 lg:flex-row flex-col-reverse justify-center px-4 mx-auto">
+        <div className="container flex gap-8 lg:flex-row flex-col-reverse justify-center px-4 mx-auto overflow-x-hidden">
           <BookList
+            readingList={storedReadingList}
             books={availableBooks}
             loading={loading}
             addToReadingList={addToReadingList}
