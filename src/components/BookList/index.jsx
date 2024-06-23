@@ -48,10 +48,10 @@ function BookList({
           {availableBooks.length ? (
             availableBooks.map((book, index) => (
               <BookListItem
+                key={index}
                 loading={loading}
                 book={book}
                 index={index}
-                key={index}
                 addToReadingList={addToReadingList}
               />
             ))

@@ -1,6 +1,9 @@
 import { Tab, TabGroup, TabList } from "@headlessui/react";
 import { useEffect, useState } from "react";
-import { setTab } from "../../redux/reducers/appSlice";
+import {
+  setTab,
+  setCategories as setCategoriesAction,
+} from "../../redux/reducers/appSlice";
 import { useDispatch, useSelector } from "react-redux";
 import SearchInput from "../SearchInput";
 
@@ -19,6 +22,7 @@ function BookListTabs({
       ...new Set(allBooks.map((book) => book.genre)),
     ]);
     setCategories(genres.map((genre) => ({ name: genre })));
+    dispatch(setCategoriesAction(genres));
   }, [allBooks]);
 
   useEffect(() => {

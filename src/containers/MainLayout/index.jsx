@@ -14,6 +14,8 @@ function MainLayout() {
   const [availableBooks, setAvailableBooks] = useState([]);
   const [readingList, setReadingList] = useState([]);
   const storedReadingList = useSelector((state) => state.app.readingList);
+  const storedSelectedTab = useSelector((state) => state.app.tab);
+  const storedCategories = useSelector((state) => state.app.categories);
 
   const backgroundImage = document.getElementById("background-image");
   if (backgroundImage) {
@@ -28,19 +30,29 @@ function MainLayout() {
   }, []);
 
   useEffect(() => {
-    const available = books.filter(
-      (b) => !storedReadingList.some((s) => s.ISBN === b.ISBN)
-    );
+    if (storedCategories.length && books.length) {
+      let available = books.filter(
+        (b) => !storedReadingList.some((s) => s.ISBN === b.ISBN)
+      );
 
-    setAvailableBooks(available);
-  }, [books, storedReadingList]);
+      let filteredBooks = [];
+      if (storedSelectedTab === 0) {
+        filteredBooks = available;
+      } else {
+        filteredBooks = available.filter(
+          (b) => b.genre === storedCategories[storedSelectedTab]
+        );
+      }
+      setAvailableBooks(filteredBooks);
+    }
+  }, [books, storedReadingList, storedCategories, storedSelectedTab]);
 
   useEffect(() => {}, [readingList]);
 
   const addToReadingList = (book) => {
-    setAvailableBooks((prevBooks) =>
-      prevBooks.filter((b) => b.ISBN !== book.ISBN)
-    );
+    setAvailableBooks((prevBooks) => {
+      return prevBooks.filter((b) => b.ISBN !== book.ISBN);
+    });
   };
 
   return (
