@@ -1,4 +1,5 @@
-import { Description, Field, Input, Label } from "@headlessui/react";
+import { Field, Input } from "@headlessui/react";
+import { useSelector } from "react-redux";
 import clsx from "clsx";
 
 export default function SearchInput({
@@ -7,6 +8,9 @@ export default function SearchInput({
   availableBooks,
   readingList,
 }) {
+  const storedSelectedTab = useSelector((state) => state.app.tab);
+  const storedCategories = useSelector((state) => state.app.categories);
+
   function handleFilter(value) {
     if (allBooks) {
       let filteredBooks = value
@@ -21,6 +25,11 @@ export default function SearchInput({
       filteredBooks = filteredBooks.filter(
         (b) => !readingList.some((s) => s.ISBN === b.ISBN)
       );
+      if (storedSelectedTab !== 0) {
+        filteredBooks = filteredBooks.filter(
+          (b) => b.genre === storedCategories[storedSelectedTab]
+        );
+      }
       setAvailableBooks(filteredBooks);
     }
   }

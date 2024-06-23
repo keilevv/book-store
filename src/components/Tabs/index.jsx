@@ -25,25 +25,6 @@ function BookListTabs({
     dispatch(setCategoriesAction(genres));
   }, [allBooks]);
 
-  useEffect(() => {
-    if (allBooks && categories.length > 1) {
-      handleFilter(storedSelectedTab, allBooks, categories, readingList);
-    }
-  }, [storedSelectedTab, allBooks, categories, readingList]);
-
-  function handleFilter(value, allBooks, categories, readingList) {
-    if (allBooks) {
-      let filteredBooks = value
-        ? allBooks.filter((book) => book.genre === categories[value].name)
-        : allBooks;
-
-      filteredBooks = filteredBooks.filter(
-        (b) => !readingList.some((s) => s.ISBN === b.ISBN)
-      );
-      setAvailableBooks(filteredBooks);
-    }
-  }
-
   return (
     <div className="flex-col justify-center pt-10 pb-10 ">
       <TabGroup

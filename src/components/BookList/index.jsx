@@ -12,13 +12,6 @@ function BookList({
   setAvailableBooks,
 }) {
   const storedSelectedTab = useSelector((state) => state.app.tab);
-  useEffect(() => {
-    const gridElement = document.getElementById("grid-container");
-    if (gridElement) {
-      if (readingList.length < 8) {
-      }
-    }
-  }, [readingList]);
 
   useEffect(() => {
     const listContent = document.getElementById("book-list-content");
